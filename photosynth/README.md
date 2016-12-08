@@ -1,5 +1,5 @@
 # Photosynth Website
-This github repo contains the website visible at <a href="http://photosynth.github.io">photosynth.github.io</a>.
+This github repo contains the website visible at <a href="http://dddexperiments.github.io/photosynth">dddexperiments.github.io/photosynth</a>.
 This website is showing the capability of the <a href="https://github.com/photosynth/PhotosynthViewer">PhotosynthViewer OSS</a>.
 
 ## How to generate the content of this repo?
