@@ -142,7 +142,8 @@
 			PS.Progress.init({color: "#b4e800"});
 
 			if (PS.Utils.getUrlParams().favorites === "0") {
-				PS.API.getListOfUserSynth("dddexperiments", {
+				var username = getUrlParams().user || "dddexperiments";
+				PS.API.getListOfUserSynth(username, {
 					filter: "SynthPackets",
 					maxItems: 300,
 					onProgress: function(percent) {
