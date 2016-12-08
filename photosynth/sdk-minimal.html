@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Minimal Viewer</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
+
+		<link rel="stylesheet" type="text/css" href="css/demos.css" />
+		<style type="text/css">
+			body {
+				font-family: Segoe UI;
+				margin: 0px;
+				height: 100%;
+				padding: 10px;
+			}
+			h1, h3 {
+				font-weight: normal;
+			}
+			#viewer-container {
+				position: relative;
+			}
+
+		</style>
+		<script type="text/javascript" src="js/getUrlParams.js"></script>
+		<script type="text/javascript">var _useCompileJS = getUrlParams().compiled === "1";</script>
+		<script type="text/javascript" src="js/embedScripts.js"></script>
+
+	</head>
+
+	<body>
+
+		<h1>Viewer SDK demo</h1>
+		<div id="viewer-container">
+		</div>
+
+		<script type="text/javascript">
+		var _container = document.getElementById("viewer-container");
+
+		var _dataset;
+
+		//create the viewer
+		var _viewer = new Photosynth.PS2Viewer(_container, {
+			width:  1400,
+			height: 800,
+			animateSpeed: 1.0,
+			autoStart: false,
+			pathToWorker: _pathToWorkerParser,
+			debugMenuEnabled: true
+		});
+
+		//optionally attach event handlers
+		_viewer.addEventListener("dataset-loaded", function(dataset) {
+			console.log(dataset);
+
+			_dataset = dataset;
+		});
+
+		_viewer.addEventListener("dataset-rendered", function(dataset) {
+
+			//300ms after the synth is loaded it will start to animate to the closest camera to the position 500 on the path.
+			setTimeout(function() {
+				var position = 500;
+				var respectDraggingDirection = false;
+				var closestCamera = _dataset.path.getClosestCamera(position, respectDraggingDirection);
+				_viewer.gotoCamera(closestCamera, {
+					onComplete: function() {
+						//do something
+					}
+				});
+			}, 300);
+		});
+
+		//showing how to attach/detach handler with custom function:
+
+		//a) creating custom function
+		function onPositionChanged(qIndex) {
+			console.log("path position: " + _dataset.path.fixRange(qIndex));
+		}
+
+		//b) attaching custom function
+		_viewer.addEventListener("position-changed", onPositionChanged);
+
+		//c) detaching it after 2s
+		setTimeout(function() {
+			_viewer.removeEventListener("position-changed", onPositionChanged);
+		}, 2000);
+
+		//starting downloading the synth
+		_viewer.loadGuid("96646bc3-250c-4eb3-9016-89175a1a7df4");
+
+		//you can also download a synth locally with the export button on the website and then use
+		//_viewer.load("path/to/your/synth");
+
+		</script>
+
+	</body>
+</html>
