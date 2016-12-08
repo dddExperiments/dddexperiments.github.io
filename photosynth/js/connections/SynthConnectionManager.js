@@ -101,7 +101,7 @@ PS.Packet.SynthConnectionManager = function(packetPlayer, annotationViewer, opti
 	};
 
 	function getPacketBaseUrl(guid) {
-		return "http://cdn.photosynth.net/ps2/" + guid + "/packet/";
+		return "https://cdn.photosynth.net/ps2/" + guid + "/packet/";
 	}
 
 	this.back = function() {

@@ -3,7 +3,7 @@
 PS.Packet.SynthConnectionViewer = function(player, options) {
 
 	function getPacketBaseUrl(guid) {
-		return "http://cdn.photosynth.net/ps2/" + guid + "/packet/";
+		return "https://cdn.photosynth.net/ps2/" + guid + "/packet/";
 	}
 
 	var _player = player;
