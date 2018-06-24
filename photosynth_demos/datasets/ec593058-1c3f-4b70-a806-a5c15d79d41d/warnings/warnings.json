@@ -1,0 +1,9 @@
+{
+   "LowCaptureDensity" : {
+      "actual" : "27",
+      "desired" : "30"
+   },
+   "TrimmedLoop" : {
+      "count" : "1"
+   }
+}

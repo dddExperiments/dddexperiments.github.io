@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Minimal Viewer</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
+
+		<link rel="stylesheet" type="text/css" href="build/css/PS2PacketPlayer.min.css" />
+		<script type="text/javascript" src="build/js/PS2API.min.js"></script>
+		<script type="text/javascript" src="build/js/PS2PacketPlayer.min.js"></script>
+		<style type="text/css">
+			body {
+				font-family: Segoe UI;
+				margin: 0px;
+				height: 100%;
+				padding: 10px;
+				background-color: rgb(60, 64, 65);
+			}
+			h1, h3 {
+				font-weight: normal;
+			}
+			#viewer-container {
+				position: relative;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="viewer-container">
+		</div>
+
+		<script type="text/javascript">
+		var _container = document.getElementById("viewer-container");
+
+		var _viewer = new Photosynth.PS2Viewer(_container, {
+			width:  1400,
+			height: 800,
+			animateSpeed: 1.0,
+			autoStart: false,
+			pathToWorker: "build/js/PS2PacketPlayer.worker.min.js",
+			debugMenuEnabled: true
+		});
+		_viewer.addEventListener("dataset-loaded", function(dataset) {
+			console.log(dataset);
+		});
+		_viewer.load("datasets/ec593058-1c3f-4b70-a806-a5c15d79d41d/");
+		</script>
+
+	</body>
+</html>
